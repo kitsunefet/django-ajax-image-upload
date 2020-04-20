@@ -38,6 +38,7 @@ def ajaximage(
             'image/pjpeg',
             'image/gif',
             'image/svg+xml',
+            'image/webp'
         ]
         if file_.content_type not in image_types:
             data = json.dumps({'error': 'Bad image format.'})

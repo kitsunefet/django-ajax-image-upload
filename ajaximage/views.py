@@ -44,8 +44,9 @@ def ajaximage(
             data = json.dumps({'error': 'Bad image format.'})
             return HttpResponse(data, content_type="application/json", status=403)
 
-        file_ = resize(file_, max_width, max_height, crop)
         file_name, extension = os.path.splitext(file_.name)
+        if not str(extension).lower() == '.webp':
+            file_ = resize(file_, max_width, max_height, crop)
         safe_name = '{0}{1}'.format(FILENAME_NORMALIZER(file_name), extension)
 
         storage_obj = get_storage_class(storage)()

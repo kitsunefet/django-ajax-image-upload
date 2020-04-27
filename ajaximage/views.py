@@ -41,7 +41,7 @@ def ajaximage(
             'image/webp'
         ]
         if file_.content_type not in image_types:
-            data = json.dumps({'error': 'Bad image format.'})
+            data = json.dumps({'error': 'Bad image format. '+str(file_.content_type)})
             return HttpResponse(data, content_type="application/json", status=403)
 
         file_name, extension = os.path.splitext(file_.name)

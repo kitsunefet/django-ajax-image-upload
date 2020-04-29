@@ -8,7 +8,7 @@ except ImportError:
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 
-def resize(file_, max_width=0, max_height=0, crop=0):
+def resize(file_, max_width=0, max_height=0, crop=0, format='jpeg'):
     max_width = int(max_width)
     max_height = int(max_height)
     crop = int(crop)
@@ -35,7 +35,7 @@ def resize(file_, max_width=0, max_height=0, crop=0):
     else:
         image.thumbnail(size, Image.ANTIALIAS)
 
-    image.save(temp, 'jpeg')
+    image.save(temp, str(format))
     temp.seek(0)
 
-    return SimpleUploadedFile(file_.name, temp.read(), content_type='image/jpeg')
+    return SimpleUploadedFile(file_.name, temp.read(), content_type='image/'+str(format))

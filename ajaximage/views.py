@@ -46,7 +46,9 @@ def ajaximage(
 
         file_name, extension = os.path.splitext(file_.name)
         if not str(extension).lower() == '.webp':
-            file_ = resize(file_, max_width, max_height, crop)
+            file_ = resize(file_, max_width, max_height, crop, 'jpeg')
+        else:
+            file_ = resize(file_, max_width, max_height, crop, 'webp')
         safe_name = '{0}{1}'.format(FILENAME_NORMALIZER(file_name), extension)
 
         storage_obj = get_storage_class(storage)()
